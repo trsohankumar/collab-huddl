@@ -1,6 +1,18 @@
-export const initialValue = [
-    {
-      type: "paragraph",
-      children: [{ text: "A line of text in a paragraph." }],
-    },
-  ];
+import { Value } from "slate";
+
+export const initialValue = Value.fromJSON({
+  document: {
+    nodes: [
+      {
+        object: "block",
+        type: "paragraph",
+        nodes: [
+          {
+            object: "text",
+            text: "Random Text here",
+          },
+        ],
+      },
+    ],
+  },
+});
