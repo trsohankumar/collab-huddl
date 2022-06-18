@@ -25,6 +25,7 @@ const groupData = {};
 io.on("connection", function(socket) {
     socket.on("new-operations", function(data) {
       groupData[data.groupId] = data.value;
+      console.log(groupData[data.groupId])
       io.emit(`new-remote-operations-${data.groupId}`, data);
     });
   });

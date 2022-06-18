@@ -6,7 +6,6 @@ const GroupEditor = () => {
     const {id}= useParams()
   return (
     <div>
-        {id}
     <SlateEditor groupId={id}/>
     </div>
   )
