@@ -4,13 +4,18 @@ import { initialValue } from "./editor.js";
 import io from "socket.io-client";
 import { Value } from "slate";
 
+
 const socket = io("http://localhost:5000");
+
+
 
 const SlateEditor = ({ groupId }) => {
   const [value, setValue] = useState(initialValue);
   const id = useRef(`${Date.now()}`);
   const editor = useRef(null);
   const remote = useRef(false);
+  
+  
 
   useEffect(() => {
     fetch(`http://localhost:5000/groups/${groupId}`).then((x) =>
@@ -26,6 +31,9 @@ const SlateEditor = ({ groupId }) => {
         remote.current = false;
       }
     });
+
+
+    
 
     return () => {
       socket.off(eventName);
