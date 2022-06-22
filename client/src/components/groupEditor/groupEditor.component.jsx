@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import SlateEditor from "../editor/editor.component";
 import io from "socket.io-client";
 import Peer from "simple-peer";
+
+
+
+import SlateEditor from "../editor/editor.component";
 
 const videoConstraints = {
   height: window.innerHeight / 2,
@@ -28,6 +31,7 @@ const Video = (props) => {
 
 const GroupEditor = () => {
   const { id } = useParams();
+  
 
   const [peers, setPeers] = useState([]);
     const socketRef = useRef();
@@ -132,18 +136,23 @@ const GroupEditor = () => {
         track.enabled=true
       }
 
+      
+
+      
+
   return (
     <div>
       <SlateEditor groupId={id} />
-      <video muted ref={userVideo} autoPlay playsInline style={{"height":"40%","width":"50%"}}/>
+      <video  muted ref={userVideo} autoPlay playsInline style={{"height":"40%","width":"50%"}}/>
             {peers.map((peer) => {
                 return (
-                    <Video key={peer.peerID} peer={peer.peer} />
+                    <Video  key={peer.peerID} peer={peer.peer} />
                 );
             })}
 
         <button onClick={()=>handleHide('video')}>Hide/unhide Video</button>
         <button onClick={()=>handleHide('audio')}>mute/unmute audio</button>
+        
 </div>
    
   );

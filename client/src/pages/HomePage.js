@@ -20,9 +20,9 @@ const HomePage = () => {
 
   return (
     <>
-      <div>HUDDL</div>
+      <div >HUDDL</div>
       <div>
-        <button onClick={handleCreateRoom}>Create Room</button>
+        <button onClick={handleCreateRoom} className="buttonBlock buttonInline">Create Room</button>
         <input
           type="text"
           value={idToCall}
@@ -31,7 +31,7 @@ const HomePage = () => {
             setIdToCall(e.target.value);
           }}
         />
-        <button onClick={handleJoinRoom}>Join Room</button>
+        <button onClick={handleJoinRoom} className="buttonBlock buttonInline">Join Room</button>
       </div>
     </>
   );
