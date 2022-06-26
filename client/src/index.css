@@ -1,42 +1,29 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 
-
-
-#video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
-  grid-auto-rows: 300px;
-}
-
-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-body{
-  background-color: #F7F1EB;
+body {
+  background-color: #f7f1eb;
   --block-text-color: #222;
-    --block-background-color: #fff;
-    --block-accent-color: #00ae86;
-    --block-shadow-color: #444;
+  --block-background-color: #fff;
+  --block-accent-color: #00ae86;
+  --block-shadow-color: #444;
+  overflow: hidden;
 }
 .buttonBlock.buttonInline {
   display: inline-block;
-  font-size: .75em;
+  font-size: 0.75em;
   padding: 0 6px;
   margin: 3px 2px 1px 4px;
 }
@@ -53,7 +40,7 @@ body{
   position: relative;
   top: -2px;
   left: -2px;
-  transition: transform .2s;
+  transition: transform 0.2s;
   margin: 8px 6px 10px;
   z-index: 1;
 }
@@ -89,5 +76,5 @@ body{
   left: 3px;
   right: 0;
   z-index: -2;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }

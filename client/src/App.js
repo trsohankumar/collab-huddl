@@ -1,9 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Redirect, Route} from 'react-router-dom'
-import GroupEditor from './components/groupEditor/groupEditor.component';
 
-import HomePage from './pages/HomePage';
-import RoomPage from './pages/RoomPage';
+import HomePage from './pages/HomePage/HomePage';
+import RoomPage from './pages/RoomPage/RoomPage';
+
 
 const App = () =>{
   return (
