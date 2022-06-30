@@ -5,6 +5,7 @@ const cors = require("cors");
 const { Deta } = require("deta");
 const bodyParser = require("body-parser");
 
+
 const deta = Deta("c0k74q07_6LVyqQVyLRP3ML2i85jnHLWA6wQ4v5R3");
 const db = deta.Base("testdb");
 
@@ -89,6 +90,15 @@ app.get("/groups/:id", (req, res) => {
     groupData[id] = initialEditorValue;
   }
   res.send(groupData[id]);
+});
+
+app.get("/room/:id", (req, res) => {
+  const { id } = req.params;
+  if (!(id in groupData)) {
+    res.send(false)
+  }else{
+    res.send(true)
+  }
 });
 
 app.post("/docs/", async (req, res) => {
