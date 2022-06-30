@@ -5,6 +5,7 @@ import "./HomePage.css";
 
 import { useHistory } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
+import { getRoomId } from "../../api";
 // import { ReactComponent as Illus } from "../../assets/image.jpg";
 
 const HomePage = () => {
@@ -16,8 +17,18 @@ const HomePage = () => {
     history.push(`/room/${currentRoomId}`);
   };
 
-  const handleJoinRoom = () => {
-    history.push(`room/${idToCall}`);
+  const handleJoinRoom = async () => {
+    try{
+      const {data} = await getRoomId(idToCall);
+      if(data){
+        history.push(`room/${idToCall}`);
+      }else{
+        history.push(`error404`)
+      }
+    } catch(error){
+      console.log(error);
+      alert("Wrong room code")
+    }
   };
 
   return (
@@ -26,7 +37,7 @@ const HomePage = () => {
         className="logo_section"
         style={{ marginTop: "2vh", marginLeft: "2vw" }}
       >
-        <Logo style={{ maxHeight: "8vh", maxWidth: "8vw" }} />
+        <Logo style={{ maxHeight: "8vh", maxWidth: "8vw"}} />
         <span className="uddl">&nbsp;uddl</span>
       </div>
       <div className="branding_section">Brainstorming made convenient</div>

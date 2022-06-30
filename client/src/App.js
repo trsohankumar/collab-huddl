@@ -11,7 +11,7 @@ const App = () =>{
     <BrowserRouter>
       <Route path='/' exact component={HomePage} />
       <Route path="/room/:id" component={RoomPage}  />
-      <Route path="/error" component={Error404} />
+      <Route path="/error404" component={Error404} />
     </BrowserRouter> 
   );
 }

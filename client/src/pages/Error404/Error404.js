@@ -1,9 +1,40 @@
-import React from 'react'
+import React from "react";
+import { useHistory } from "react-router-dom";
+import './Error404.css'
 
 const Error404 = () => {
+	const history = useHistory();
+	const handleClick = () => {
+		history.push(`/`);
+	}
+
   return (
-    <div>Error404</div>
-  )
-}
+	<div className="container-error">
+    <figure>
+	<div class="sad-mac"></div>
+	<figcaption>
+		<span class="sr-text">Error 404: Not Found</span>
+		<span class="e"></span>
+		<span class="r"></span>
+		<span class="r"></span>
+		<span class="o"></span>
+		<span class="r"></span>
+		<span class="_4"></span>
+		<span class="_0"></span>
+		<span class="_4"></span>
+		<span class="n"></span>
+		<span class="o"></span>
+		<span class="t"></span>
+		<span class="f"></span>
+		<span class="o"></span>
+		<span class="u"></span>
+		<span class="n"></span>
+		<span class="d"></span>
+	</figcaption>
+</figure>
+<button className="goBackButton" onClick={handleClick}>Go Back</button>
+</div>
+  );
+};
 
 export default Error404;

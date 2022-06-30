@@ -10,3 +10,5 @@ export const getDoc = (docId, id) =>
   axios.post(`${url}/docs/fetch/`, { docId: docId, id: id });
 
 export const deleteDoc = (id) => axios.delete(`${url}/docs/${id}`);
+
+export const getRoomId = (id) => axios.get(`${url}/room/${id}`)
