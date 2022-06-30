@@ -3,7 +3,7 @@ import { Editor } from "slate-react";
 
 import io from "socket.io-client";
 import { Value } from "slate";
-
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { saveDoc, getDoc, deleteDoc } from "../../api/index";
 import { initialValue } from "./editor.js";
 
@@ -67,7 +67,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          bold
+          Bold
         </button>
         <button
           onMouseDown={(e) => {
@@ -77,7 +77,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          italic
+          Italic
         </button>
         <button
           onMouseDown={(e) => {
@@ -87,7 +87,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          underline
+          Underline
         </button>
         <button
           onMouseDown={(e) => {
@@ -97,7 +97,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          heading
+          Heading
         </button>
         <button
           onMouseDown={(e) => {
@@ -107,7 +107,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          subheading
+          Subheading
         </button>
         <button
           onMouseDown={(e) => {
@@ -117,9 +117,9 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          bulletlist
+          Bulletlist
         </button>
-       
+
         <button
           onMouseDown={(e) => {
             e.preventDefault();
@@ -128,7 +128,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          blockquotes
+          Blockquotes
         </button>
         <button
           onMouseDown={(e) => {
@@ -138,7 +138,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          code
+          Code
         </button>
         <button
           onMouseDown={(e) => {
@@ -148,7 +148,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          leftalign
+          Left
         </button>
         <button
           onMouseDown={(e) => {
@@ -158,7 +158,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          centeralign
+          Center
         </button>
         <button
           onMouseDown={(e) => {
@@ -168,7 +168,7 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          rightalign
+          Right
         </button>
         <button
           onMouseDown={(e) => {
@@ -178,15 +178,13 @@ const SlateEditor = ({ groupId }) => {
           }}
           className="buttonBlock buttonInline"
         >
-          justify
+          Justify
         </button>
-       
       </div>
       <div>
         <Editor
           ref={editor}
           className="buttonBlock buttonInline editor"
-          
           value={value}
           renderMark={(props, _editor, next) => {
             if (props.mark.type === "bold") {
@@ -292,7 +290,9 @@ const SlateEditor = ({ groupId }) => {
         />
       </div>
       <div className="editor-buttons-container">
-        <button className="editor-buttons" onClick={saveData}>Save Data</button>
+        <button className="editor-buttons" onClick={saveData}>
+          Save
+        </button>
         <input
           type="text"
           className="input"
@@ -302,15 +302,15 @@ const SlateEditor = ({ groupId }) => {
             setDocToFetch(e.target.value);
           }}
         />
-        <button className="editor-buttons" onClick={fetchData}>Fetch</button>
-        <button className="editor-buttons" onClick={deleteData}>Delete</button>
-        <button
-        
-          
-          className="editor-buttons"
-        >
-          DocID: {groupId}
+        <button className="editor-buttons" onClick={fetchData}>
+          Fetch
         </button>
+        <button className="editor-buttons" onClick={deleteData}>
+          Delete
+        </button>
+        <CopyToClipboard text={groupId}>
+          <button className="editor-buttons">Copy ID</button>
+        </CopyToClipboard>
       </div>
     </div>
   );

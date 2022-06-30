@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -12,9 +13,8 @@ code {
     monospace;
 }
 
-
 body {
-  background-color: #f7f1eb;
+  background-color: #f99b52;
   --block-text-color: #222;
   --block-background-color: #fff;
   --block-accent-color: #00ae86;

@@ -1,18 +1,17 @@
 import React from 'react';
-import {BrowserRouter, Redirect, Route} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 
 import HomePage from './pages/HomePage/HomePage';
 import RoomPage from './pages/RoomPage/RoomPage';
+import Error404 from './pages/Error404/Error404';
 
 
 const App = () =>{
   return (
     <BrowserRouter>
-      {/* <Route path='/'  exact render={() => {
-        return <Redirect to={`/group/${Date.now()}`}  />
-      }} /> */}
       <Route path='/' exact component={HomePage} />
       <Route path="/room/:id" component={RoomPage}  />
+      <Route path="/error" component={Error404} />
     </BrowserRouter> 
   );
 }

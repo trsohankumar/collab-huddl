@@ -2,14 +2,14 @@ const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const cors = require("cors");
-const { Deta } = require('deta');
-const bodyParser = require('body-parser');
+const { Deta } = require("deta");
+const bodyParser = require("body-parser");
 
-const deta = Deta('c0k74q07_6LVyqQVyLRP3ML2i85jnHLWA6wQ4v5R3');
-const db = deta.Base('testdb');
+const deta = Deta("c0k74q07_6LVyqQVyLRP3ML2i85jnHLWA6wQ4v5R3");
+const db = deta.Base("testdb");
 
-app.use(bodyParser.json({ limit: '30mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 const initialEditorValue = {
@@ -79,10 +79,9 @@ io.on("connection", function (socket) {
       room = room.filter((id) => id !== socket.id);
       users[roomID] = room;
     }
-    socket.broadcast.emit('user left',socket.id);
+    socket.broadcast.emit("user left", socket.id);
   });
 });
-
 
 app.get("/groups/:id", (req, res) => {
   const { id } = req.params;
@@ -92,40 +91,35 @@ app.get("/groups/:id", (req, res) => {
   res.send(groupData[id]);
 });
 
-app.post('/docs/',async (req, res) => {
-   const { id } = req.body;
-   console.log(groupData[id])
-   const insertedDoc = await db.put(groupData[id],id);
-   
-   res.status(201).json(insertedDoc);
-  
-})
+app.post("/docs/", async (req, res) => {
+  const { id } = req.body;
+  console.log(groupData[id]);
+  const insertedDoc = await db.put(groupData[id], id);
 
-app.delete('/docs/:id',async(req,res)=>{
+  res.status(201).json(insertedDoc);
+});
+
+app.delete("/docs/:id", async (req, res) => {
   const id = req.params.id;
   await db.delete(id);
   groupData[id] = initialEditorValue;
-  res.json({ message: 'deleted' });
-})
+  res.json({ message: "deleted" });
+});
 
-app.post('/docs/fetch',async(req,res)=>{
-  const id=req.body.id;
+app.post("/docs/fetch", async (req, res) => {
+  const id = req.body.id;
   const docId = req.body.docId;
   console.log(id);
-  console.log(docId)
+  console.log(docId);
 
   const doc = await db.get(docId);
 
-  
   if (doc) {
-    
-    res.send(doc)
-  
+    res.send(doc);
   } else {
-    res.status(404).json({ message: 'user not found' });
+    res.status(404).json({ message: "user not found" });
   }
-})
-
+});
 
 http.listen(5000, function () {
   console.log("listening on *:5000");

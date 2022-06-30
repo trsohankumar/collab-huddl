@@ -3,8 +3,9 @@ import io from "socket.io-client";
 import Peer from "simple-peer";
 import { BsCameraVideoFill, BsCameraVideoOffFill } from "react-icons/bs";
 import { AiFillAudio, AiOutlineAudioMuted } from "react-icons/ai";
-import {MdCallEnd} from 'react-icons/md'
+import { MdCallEnd } from "react-icons/md";
 import "./video.styles.css";
+import { useHistory } from "react-router-dom";
 
 const videoConstraints = {
   height: window.innerHeight / 2,
@@ -28,6 +29,7 @@ const Video = ({ id }) => {
   const socketRef = useRef();
   const userVideo = useRef();
   const peersRef = useRef([]);
+  const history = useHistory();
   const [videoOn, setVideoOn] = useState(true);
   const [audioOn, setAudioOn] = useState(true);
   const roomID = id;
@@ -141,32 +143,46 @@ const Video = ({ id }) => {
     } else track.enabled = true;
   };
 
+  const handleLeaveRoom = () => {
+    history.push(`/`);
+  };
   return (
     <div className="video-items-container">
-      <video
-        muted
-        ref={userVideo}
-        autoPlay
-        playsInline
-        className="video-styles"
-      />
-      {peers.map((peer) => {
-        return <OtherVideo key={peer.peerID} peer={peer.peer} />;
-      })}
+      <div className="video-component">
+        <video
+          muted
+          ref={userVideo}
+          autoPlay
+          playsInline
+          className="video-styles"
+        />
+
+        {peers.map((peer) => {
+          return <OtherVideo key={peer.peerID} peer={peer.peer} />;
+        })}
+      </div>
       <div>
         <button
           className="video-buttons"
+          style={{ top: "5vh", right: "15vh" }}
           onClick={() => handleHide("video")}
         >
           {videoOn ? <BsCameraVideoFill /> : <BsCameraVideoOffFill />}
         </button>
         <button
           className="video-buttons"
+          style={{ top: "5vh", right: "5vh" }}
           onClick={() => handleHide("audio")}
         >
-          {audioOn ? <AiFillAudio /> : <AiOutlineAudioMuted/>}
+          {audioOn ? <AiFillAudio /> : <AiOutlineAudioMuted />}
         </button>
-        <button className="video-buttons"><MdCallEnd /></button>
+        <button
+          className="video-buttons"
+          style={{ top: "5vh", right: "25vh" }}
+          onClick={handleLeaveRoom}
+        >
+          <MdCallEnd />
+        </button>
       </div>
     </div>
   );
